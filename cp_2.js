@@ -1,4 +1,4 @@
-// Reference to the container element
+// Reference to the container elements
 const productContainer = document.getElementById('product-container');
 
 // Step 3

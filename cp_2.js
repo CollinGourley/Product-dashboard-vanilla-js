@@ -1,3 +1,6 @@
+// Reference to the container element
+const productContainer = document.getElementById('product-container');
+
 // Step 3
 function fetchProductsThen() {
     fetch('https://www.course-api.com/javascript-store-products')
@@ -9,16 +12,15 @@ function fetchProductsThen() {
         })
         .then(data => {
             data.forEach(product => {
-                console.log(product.name);
+                console.log(product.fields.name);
             });
         })
         .catch(error => {
-            console.error('Fetch error:', error);
+            handleError(error);
         });
 }
 
-fetchProductsThen();
-// Step 4: fetchProductsAsync() using async/await */
+// Step 4
 async function fetchProductsAsync() {
     try {
         const response = await fetch('https://www.course-api.com/javascript-store-products');
@@ -30,9 +32,9 @@ async function fetchProductsAsync() {
     }
 }
 
-// Step 5: displayProducts(products) - show first 5 products */
+// Step 5
 function displayProducts(products) {
-    productContainer.innerHTML = ''; // Clear container
+    productContainer.innerHTML = '';
     products.slice(0, 5).forEach(product => {
         const card = document.createElement('div');
         card.className = 'product-card';
@@ -45,21 +47,12 @@ function displayProducts(products) {
     });
 }
 
-// Error handler 
-function handleError(error) {
-    console.error('Error fetching products:', error);
-    productContainer.innerHTML = `<p style="color:red;">Failed to load products. Please try again later.</p>`;
-}
-
-// Call both functions for demonstration
-fetchProductsThen();
-fetchProductsAsync();
-/* Step 6: reusable error handler */
+// Step 6
 function handleError(error) {
     console.error(`An error occurred: ${error.message}`);
     productContainer.innerHTML = `<p style="color:red;">An error occurred: ${error.message}</p>`;
 }
 
-// Call functions
+// Step 7
 fetchProductsThen();
 fetchProductsAsync();
